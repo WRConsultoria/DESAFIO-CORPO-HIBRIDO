@@ -1,0 +1,435 @@
+/* Reseta estilos padrão do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis CSS para cores e URLs */
+:root {
+  --text-color: rgb(255, 255, 255);
+  --bg-url: none;
+  /* Fundo padrão */
+  --stroke-color: rgba(255, 255, 255, 0.1);
+  --surface-color: rgba(255, 255, 255, 0.425);
+  --surface-color-hover: rgba(0, 0, 0, 0.5);
+  --highlight-color: rgba(255, 255, 255, 0.041);
+}
+
+/* Estilos globais para o corpo da página */
+body {
+  background: url("./assets/pagina_de_login_academia_mb.png") center/cover no-repeat fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+/* ======================================================= */
+/* ESTILOS PARA A PÁGINA PRINCIPAL (index.html) */
+/* Quando o body tem a classe 'main-page' */
+body.main-page {
+  display: block;
+  overflow-y: auto;
+  font-size: 18px;
+  min-height: 100vh;
+}
+
+body.main-page #container {
+  width: 100%;
+  max-width: 588px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+body.main-page #profile {
+  /* transform #profile em um bloco normal (não fixo) —
+     o logo fixo ficará num elemento separado .logo */
+  text-align: center;
+  padding: 12px;
+  position: relative; /* não fixo */
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 100%;
+  max-width: 588px;
+  z-index: 1;
+  background: transparent; /* remover fundo semitransparente do container */
+  box-shadow: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+body.main-page #profile img {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+body.main-page #profile p {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  padding: 8px;
+  text-align: center;
+  /* Centraliza o texto do parágrafo do perfil */
+  font-weight: 550;
+  /* Peso da fonte mais forte para destaque */
+}
+
+/* Mantém o logo fixo fora do fluxo */
+.logo {
+  position: fixed;
+  top: 12px; /* ajuste a distância do topo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+/* grande container (faixa) atrás do logo */
+.logo-bar {
+  /* largura e espaçamento alinhados ao #container */
+  width: calc(100% - 48px);
+  max-width: 588px; /* mesmo max-width do #container */
+  /* imagem de preenchimento com overlay para manter contraste do texto */
+  background: linear-gradient(rgba(255,255,255,0.62), rgba(255,255,255,0.62)), url('./assets/pagina_de_login_academia.jpg') center/cover no-repeat;
+  padding: 22px 24px 14px 24px; /* padding lateral = 24px para alinhar */
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  overflow: hidden; /* garante que a imagem respeite os cantos arredondados */
+}
+
+/* posiciona o texto em relação ao container: entre a imagem e a base */
+.logo-bar {
+  position: relative; /* já é usado, mas reforça para posicionamento absoluto do texto */
+}
+
+.logo .logo-text {
+  /* position: absolute; */ /* Removido para usar flexbox */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* top: 62%; */
+  margin: 0;
+  color: #1976d2;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  pointer-events: none;
+  white-space: nowrap; /* mantém em uma única linha quando couber */
+  font-size: 18px;
+  padding: 24px;
+}
+
+/* responsivo */
+@media (max-width: 480px) {
+  .logo {
+    top: 8px;
+  }
+
+  .logo-bar {
+     /* No mobile, o padding lateral do container é 24px, então a barra deve ter o mesmo. */
+    padding: 18px 24px 10px 24px;
+  }
+
+  .logo-badge img {
+    max-width: 120px; /* Aumentado em 50% de 80px */
+    width: min(67.5vw, 120px); /* Aumentado em 50% de 45vw */
+    max-height: 150px; /* Aumentado em 50% de 100px */
+    height: auto; /* Adicionado para manter a proporção */
+    object-fit: contain; /* Adicionado para evitar distorção */
+  }
+
+  .logo .logo-text {
+    font-size: 18px;
+    white-space: normal; /* permite quebra em telas muito pequenas */
+    top: 34%; /* no mobile desloca um pouco mais para baixo */
+  }
+}
+
+.logo-badge {
+  display: inline-block;
+}
+
+.logo-badge img {
+  display: block;
+  width: min(45vw, 270px); /* Aumentado em 50% de 180px */
+  height: auto;
+  max-height: 180px; /* Aumentado em 50% de 120px */
+  object-fit: contain;
+}
+
+/* Estilos dos botões de navegação na página principal */
+body.main-page ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+  --text-color: rgb(0, 0, 0);
+  /* Cor do texto do perfil */
+  margin-top: 0; /* removido: agora o JS define o espaçamento dinamicamente */
+}
+
+body.main-page ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+  --text-color: rgb(0, 0, 0);
+  /* Cor do texto do perfil */
+}
+
+body.main-page ul li a:hover {
+  background-color: var(--surface-color-hover);
+  border-color: var(--text-color);
+}
+
+/* Estilos para o botão de alternar conteúdo */
+.btn-toggle-content {
+  padding: 16px 24px;
+  /* Mantém o mesmo padding dos links para consistência */
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #F8F8F8;
+  /* Off-white */
+  color: #333333;
+  /* Texto preto */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* Borda mais suave para off-white */
+  border-radius: 8px;
+  /* Borda arredondada consistente */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 100%;
+  /* Para preencher a largura do li */
+  text-align: center;
+  /* Centraliza o texto do botão */
+  backdrop-filter: blur(4px);
+  /* Efeito de blur consistente */
+  -webkit-backdrop-filter: blur(4px);
+  font-weight: 500;
+  /* Peso da fonte consistente */
+  --text-color: rgb(0, 0, 0);
+  /* Cor do texto do perfil */
+}
+
+.btn-toggle-content:hover {
+  background-color: #E0E0E0;
+  /* Um cinza mais claro no hover */
+  color: #000000;
+  /* Texto preto mais forte no hover */
+  border-color: rgba(0, 0, 0, 0.3);
+  /* Borda mais visível no hover */
+}
+
+/* Estilos para a área de conteúdo que será mostrada/escondida */
+.hidden-content {
+  margin-top: 5px;
+  /* Margem superior reduzida para aproximar do botão */
+  padding: 20px;
+  border: 1px solid var(--stroke-color);
+  /* Borda consistente */
+  border-radius: 8px;
+  /* Borda arredondada consistente */
+  /* ALTERADO: Fundo off-white com 25% de transparência (0.75 de opacidade) */
+  background-color: rgba(248, 248, 248, 0.75);
+  backdrop-filter: blur(4px);
+  /* Efeito de blur consistente */
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* MUITO IMPORTANTE: Esconde o conteúdo por padrão */
+  display: none;
+  opacity: 0;
+  /* Começa invisível para uma transição de opacidade */
+  transition: opacity 0.5s ease-in-out;
+  /* Adiciona uma transição suave */
+  max-width: 588px;
+  /* Limita a largura para melhor leitura, igual ao container principal */
+  width: 100%;
+  /* Ocupa a largura total disponível */
+}
+
+/* Estilos para o título dentro da área de conteúdo */
+.hidden-content h4 {
+  color: #333333;
+  /* Texto preto para o título */
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Estilos para os parágrafos dentro da área de conteúdo */
+.hidden-content p {
+  color: #333333;
+  /* Texto preto para os parágrafos */
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+/* Esta classe será adicionada/removida pelo JavaScript */
+/* Ela faz o conteúdo aparecer */
+.show-content {
+  display: block;
+  /* Torna o conteúdo visível */
+  opacity: 1;
+  /* Torna o conteúdo totalmente opaco */
+}
+
+/* Estilos para a tabela dentro da área de conteúdo */
+.hidden-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+/* Estilos para o cabeçalho da tabela dentro da área de conteúdo */
+.hidden-content th {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* Borda da tabela mais suave, agora escura */
+  padding: 6px;
+  text-align: center;
+  color: #333333;
+  /* Texto preto para o cabeçalho da tabela */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Fundo do cabeçalho da tabela mais escuro */
+  font-weight: bold;
+  font-size: 0.8rem;
+  /* Tamanho de fonte menor para melhor legibilidade */
+}
+
+/* Estilos para as células da tabela dentro da área de conteúdo */
+.hidden-content td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* Borda da tabela mais suave, agora escura */
+  padding: 5px;
+  text-align: left;
+  color: #333333;
+  /* Texto preto para as células da tabela */
+  font-size: 0.8rem;
+  /* Tamanho de fonte menor para melhor legibilidade */
+}
+
+
+/* Estilos dos links sociais na página principal */
+body.main-page #social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0;
+  /* Padding superior e inferior para o bloco */
+  font-size: 24px;
+}
+
+body.main-page #social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  /* Padding interno do "botão" ao redor do ícone */
+  background-color: transparent;
+  /* Fundo transparente para o ícone, se desejar */
+  transition: background 0.2s;
+  border-radius: 50%;
+  /* Faz o "botão" redondo */
+  box-sizing: border-box;
+}
+
+body.main-page #social-links a:hover {
+  background-color: var(--highlight-color);
+  /* Fundo branco semitransparente no hover */
+}
+
+/* Estilos do footer na página principal */
+body.main-page footer {
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.main-page footer a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Estilos para o botão de completar */
+.btn-complete {
+  background-color: #4fc3f7; /* azul claro */
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.btn-complete:hover {
+  background-color: #039be5; /* azul mais escuro ao passar o mouse */
+}
+
+.btn-complete.completed {
+  background-color: #1976d2; /* azul mais forte quando concluído */
+  color: #fff;
+}
+
+.btn-complete.completed:hover {
+  background-color: #1565c0;
+}
+
+/* Estilos para o container de vídeo */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  /* Proporção 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Estilos para o container de conteúdo do dia */
+.day-content-wrapper {
+  position: relative;
+}
+
+/* garante que o conteúdo comece abaixo do logo fixo */
+body.main-page #container {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+
