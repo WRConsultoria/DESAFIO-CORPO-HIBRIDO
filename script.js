@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Carregar progresso do localStorage ao iniciar
     document.querySelectorAll('.btn-complete').forEach(button => {
-        const day = button.getAttribute('data-day');
-        if (localStorage.getItem(`day-${day}-complete`)) {
+      const Dia = button.getAttribute('data-Dia');
+      if (localStorage.getItem(`Dia-${Dia}-complete`)) {
             button.classList.add('completed');
             button.textContent = '✓ Concluído';
         }
@@ -69,24 +69,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Toggle conteúdo com validação
     document.querySelectorAll('.btn-toggle-content').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const requiredDay = this.getAttribute('data-requires-day');
+      button.addEventListener('click', function(e) {
+        const requiredDia = this.getAttribute('data-requires-Dia');
             const target = this.getAttribute('data-target');
             const content = document.getElementById(target);
 
             // Day 1 é sempre liberado (data-requires-day="0")
-            if (requiredDay !== '0') {
-                if (!localStorage.getItem(`day-${requiredDay}-complete`)) {
+        if (requiredDia !== '0') {
+          if (!localStorage.getItem(`Dia-${requiredDia}-complete`)) {
                     // Esconde todos os conteúdos abertos
                     document.querySelectorAll('.hidden-content.show-content').forEach(openContent => {
                         openContent.classList.remove('show-content');
                     });
                     // Mostra o conteúdo do dia anterior
-                    const prevContent = document.getElementById(`day${requiredDay}Content`);
+            const prevContent = document.getElementById(`Dia${requiredDia}Content`);
                     if (prevContent) {
                         prevContent.classList.add('show-content');
                     }
-                    alert(`É necessário completar o Day ${requiredDay} antes de acessar este dia.`);
+            alert(`É necessário completar o Dia ${requiredDia} antes de acessar este dia.`);
                     return;
                 }
             }
@@ -102,16 +102,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Marcar dia como concluído
     document.querySelectorAll('.btn-complete').forEach(button => {
-        button.addEventListener('click', function(e) {
+      button.addEventListener('click', function(e) {
             e.stopPropagation();
-            const day = this.getAttribute('data-day');
+        const Dia = this.getAttribute('data-Dia');
 
             if (this.classList.contains('completed')) {
-                localStorage.removeItem(`day-${day}-complete`);
+          localStorage.removeItem(`Dia-${Dia}-complete`);
                 this.classList.remove('completed');
                 this.textContent = 'Concluído';
             } else {
-                localStorage.setItem(`day-${day}-complete`, 'true');
+          localStorage.setItem(`Dia-${Dia}-complete`, 'true');
                 this.classList.add('completed');
                 this.textContent = '✓ Concluído';
             }
@@ -119,13 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Salvar progresso no localStorage
-    document.querySelectorAll('.day-complete').forEach(checkbox => {
+    document.querySelectorAll('.Dia-complete').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            localStorage.setItem(`day-${this.dataset.day}-complete`, this.checked);
+        localStorage.setItem(`Dia-${this.dataset.Dia}-complete`, this.checked);
         });
 
         // Recuperar estado salvo
-        if (localStorage.getItem(`day-${checkbox.dataset.day}-complete`)) {
+      if (localStorage.getItem(`Dia-${checkbox.dataset.Dia}-complete`)) {
             checkbox.checked = true;
         }
     });
