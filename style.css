@@ -100,7 +100,8 @@ body.main-page #profile p {
 .logo-bar {
   width: calc(100% - 48px);
   max-width: 588px;
-  background-color: rgba(255, 255, 255, 0.2); /* 20% de transparência */
+  /* imagem de fundo com overlay de 20% para manter transparência */
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('./assets/pagina_de_login_academia.jpg') center/cover no-repeat;
   padding: 18px 24px 12px 24px;
   border-radius: 14px;
   display: flex;
