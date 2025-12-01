@@ -61,6 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Exibir o conteúdo do Dia 1 por padrão
+    const day1Content = document.getElementById('Dia1Content');
+    if (day1Content) {
+        day1Content.classList.add('show-content');
+    }
+
     // Toggle conteúdo com validação
     document.querySelectorAll('.btn-toggle-content').forEach(button => {
         button.addEventListener('click', function(e) {
