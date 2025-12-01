@@ -87,7 +87,7 @@ body.main-page #profile p {
 /* Mantém o logo fixo fora do fluxo */
 .logo {
   position: fixed;
-  top: 60px; /* desce um pouco mais para abrir espaço */
+  top: 72px; /* desce um pouco mais para abrir espaço */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -100,18 +100,18 @@ body.main-page #profile p {
 /* responsivo */
 @media (max-width: 480px) {
   .logo {
-    top: 8px;
+    top: 16px; /* espaço extra no mobile */
   }
 
   .logo-bar {
      /* No mobile, o padding lateral do container é 24px, então a barra deve ter o mesmo. */
-    padding: 0;
+    padding: 12px 24px 8px 24px;
   }
 
   .logo-badge img {
-    max-width: 120px; /* Aumentado em 50% de 80px */
-    width: min(67.5vw, 120px); /* Aumentado em 50% de 45vw */
-    max-height: 150px; /* Aumentado em 50% de 100px */
+    max-width: 280px; /* aumenta no mobile também */
+    width: min(90vw, 280px);
+    max-height: 180px;
     height: auto; /* Adicionado para manter a proporção */
     object-fit: contain; /* Adicionado para evitar distorção */
   }
@@ -129,9 +129,9 @@ body.main-page #profile p {
 
 .logo-badge img {
   display: block;
-  width: min(85vw, 520px); /* aumentar o logo mais */
+  width: min(100%, 560px); /* crescer para ocupar o quadrado indicado */
   height: auto;
-  max-height: 340px; /* altura máxima maior */
+  max-height: 220px; /* controla a altura para parecer o quadrado */
   object-fit: contain;
 }
 
