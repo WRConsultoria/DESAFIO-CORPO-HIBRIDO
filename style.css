@@ -96,6 +96,22 @@ body.main-page #profile p {
   z-index: 1000;
   pointer-events: none;
 }
+/* Container semitransparente atrás do logo, fixo junto com o logo */
+.logo-bar {
+  width: calc(100% - 48px);
+  max-width: 588px;
+  background-color: rgba(255, 255, 255, 0.2); /* 20% de transparência */
+  padding: 18px 24px 12px 24px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none; /* permite clicar/rolar conteúdo por trás */
+}
 
 /* responsivo */
 @media (max-width: 480px) {
