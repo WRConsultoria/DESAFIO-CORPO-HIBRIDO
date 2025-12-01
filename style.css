@@ -87,7 +87,7 @@ body.main-page #profile p {
 /* Mantém o logo fixo fora do fluxo */
 .logo {
   position: fixed;
-  top: 28px; /* desce o logo para abrir mais espaço */
+  top: 60px; /* desce um pouco mais para abrir espaço */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -95,46 +95,6 @@ body.main-page #profile p {
   justify-content: center;
   z-index: 1000;
   pointer-events: none;
-}
-/* grande container (faixa) atrás do logo */
-.logo-bar {
-  /* largura e espaçamento alinhados ao #container */
-  width: calc(100% - 48px);
-  max-width: 588px; /* mesmo max-width do #container */
-  /* sem fundo atrás do logo */
-  background: transparent;
-  padding: 28px 24px 18px 24px; /* aumenta o espaço superior para descer o logo */
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* posiciona o texto em relação ao container: entre a imagem e a base */
-.logo-bar {
-  position: relative; /* já é usado, mas reforça para posicionamento absoluto do texto */
-}
-
-.logo .logo-text {
-  /* position: absolute; */ /* Removido para usar flexbox */
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  /* top: 62%; */
-  margin: 0;
-  color: #1976d2;
-  z-index: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  pointer-events: none;
-  white-space: nowrap; /* mantém em uma única linha quando couber */
-  font-size: 18px;
-  padding: 24px;
 }
 
 /* responsivo */
@@ -169,9 +129,9 @@ body.main-page #profile p {
 
 .logo-badge img {
   display: block;
-  width: min(67.5vw, 405px); /* +50% em relação ao tamanho atual */
+  width: min(85vw, 520px); /* aumentar o logo mais */
   height: auto;
-  max-height: 270px; /* +50% em relação ao tamanho atual */
+  max-height: 340px; /* altura máxima maior */
   object-fit: contain;
 }
 
